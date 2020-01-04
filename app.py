@@ -20,11 +20,11 @@ def jsonParser():
     #html = response.read()
 
     r = requests.get(download_url)
-    with open("testerss.json","wb") as f:
-        f.write(r.content)
+    #with open("testerss.json","wb") as f:
+      #  f.write(r.content)
 
-    with open('testerss.json') as f:
-        x = json.load(f)
+   # with open('testerss.json') as f:
+    x = json.load(r.content)
 
     #f = csv.writer(open("jsontocsvconverted.csv", "w", newline=''))
 
