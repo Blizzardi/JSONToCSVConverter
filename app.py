@@ -32,7 +32,7 @@ def jsonParser():
 
     for x in x:
         try:
-            f.writerow([x["id"],
+          return ([x["id"],
                         x["phones"],
                         x["email"],
                         x["firstname"],
