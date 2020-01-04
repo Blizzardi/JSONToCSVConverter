@@ -31,10 +31,10 @@ def jsonParser():
     
     outputArray =  ["id", "phones", "email", "firstname", "lastname","role","username","isActive","_created_at","_updated_at"]
     output = ','.join(outputArray)
-    return output
+    #return output
     for x in x:
         try:
-          return ([x["id"],
+            output.join(",".join([x["id"],
                         x["phones"],
                         x["email"],
                         x["firstname"],
@@ -43,9 +43,10 @@ def jsonParser():
                         x["username"],
                         x["isActive"],
                         x["_created_at"],
-                        x["_updated_at"]])
+                        x["_updated_at"]]) )
+          
         except:
-            f.writerow([x["_id"],
+            output.join(",".join([x["_id"],
                         x["phones"],
                         x["email"],
                         x["firstname"],
@@ -54,13 +55,13 @@ def jsonParser():
                         x["username"],
                         x["isActive"],
                         x["_created_at"],
-                        x["_updated_at"]])
+                        x["_updated_at"]]))
 
     #return send_from_directory(directory='/smartservprojects',filename='testlol.csv', as_attachment=True)
     #return "downloading.."
     #return send_file('/Users/shahzinsajid/SmartServProjects/testlol.csv',attachment_filename='testlol.csv')
     #return render_template('downloads.html')
-    return "h"
+    return output
     #return render_template('downloads.html')
 
 @app.route('/return-file/')
