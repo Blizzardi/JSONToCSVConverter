@@ -30,7 +30,7 @@ def jsonParser():
 
     
     outputArray =  ["id", "phones", "email", "firstname", "lastname","role","username","isActive","_created_at","_updated_at"]
-    output = ''.join(outputArray)
+    output = ','.join(outputArray)
     return output
     for x in x:
         try:
