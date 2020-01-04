@@ -41,7 +41,7 @@ def jsonParser():
            # if type(idValue) == <type 'int'>:
             idValue = str(idValue)
         except:
-            idValue = "nil"
+            idValue = x["_id"] or "nil"
 
         output2 =   ",".join([ idValue ,
                         x["phones"] or "nil",
@@ -57,7 +57,7 @@ def jsonParser():
             
         #output = output + "\n' + output2 
 
-        output =  output + "\n" + output2 #'\n'.join([output, output2])
+        output =  output + "<br>" + output2 #'\n'.join([output, output2])
         i = i + 1
             
           
