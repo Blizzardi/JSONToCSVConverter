@@ -7,7 +7,7 @@ Python 3+
 Flask Framework
 
 Steps to run the application locally:
-1) From your terminal, traverse to your directory.
+1) From your terminal, traverse to the directory where the files are downloaded.
 2) Run a virtual environment to use for you an by application by using the following commands
    python-3.5 env
    source env/bin/activate
