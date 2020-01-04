@@ -31,41 +31,57 @@ def jsonParser():
     
     outputArray =  ["id", "phones", "email", "firstname", "lastname","role","username","isActive","_created_at","_updated_at"]
     output = ','.join(outputArray)
+    i = 0
     #return output
     for x in x:
-        try:
+        #try:
             #return x["id"]
-            return  ",".join([x["id"],
-                        x["phones"],
-                        x["email"],
-                        x["firstname"],
-                        x["lastname"],
-                        x["role"],
-                        x["username"],
-                        x["isActive"],
-                        x["_created_at"],
-                        x["_updated_at"]]) 
-          
+        try:
+            idValue = x["id"] or x["_id"]
+           # if type(idValue) == <type 'int'>:
+            idValue = str(idValue)
         except:
+            idValue = "nil"
+
+        output2 =   ",".join([ idValue ,
+                        x["phones"] or "nil",
+                        x["email"] or "nil",
+                        x["firstname"] or "nil",
+                        x["lastname"] or "nil",
+                        str(x["role"]) or "nil",
+                        x["username"] or "nil",
+                       str(x["isActive"]) or "nil" ,
+                        
+                        str(x["_created_at"]) or "",
+                        str(x["_updated_at"]) or ""]) 
+            
+        #output = output + "\n' + output2 
+
+        output =  output + "\n" + output2 #'\n'.join([output, output2])
+        i = i + 1
+            
+          
+       # except:
                 #return x["_id"]
-                return  ",".join([x["_id"],
-                        x["phones"],
-                        x["email"],
-                        x["firstname"],
-                        x["lastname"],
-                        x["role"],
-                        x["username"],
-                        x["isActive"],
-                        x["_created_at"],
-                        x["_updated_at"]])
+                #return  ",".join([x["_id"],
+                        #x["phones"] or "",
+                        #x["email"] or "",
+                        #x["firstname"] or "",
+                        #x["lastname"] or "",
+                        #x["role"] or "",
+                        #x["username"] or "",
+                        #x["isActive"] or "",
+                        #x["_created_at"] or ""
+                       # x["_updated_at"] or "" ]
+                        #])
 
     #return send_from_directory(directory='/smartservprojects',filename='testlol.csv', as_attachment=True)
     #return "downloading.."
     #return send_file('/Users/shahzinsajid/SmartServProjects/testlol.csv',attachment_filename='testlol.csv')
     #return render_template('downloads.html')
-    #return output
+    return output
     #return render_template('downloads.html')
-    return "hey"
+    #return "hey"
 
 @app.route('/return-file/')
 def return_file():
