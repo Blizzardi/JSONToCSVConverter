@@ -21,11 +21,11 @@ def return_file():
 @app.route('/jsonParser')
 def jsonParser(methods=['GET', 'POST']):
     
-
+    return "successfully downloaded"
 
     download_url = "https://open-to-cors.s3.amazonaws.com/users.json"
     r = requests.get(download_url)
-return "successfully downloaded"
+
     with open("testerss.json","wb") as f:
         f.write(r.content)
 
