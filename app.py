@@ -6,5 +6,11 @@ app = Flask(__name__)
 def index():
     return "Hello, World"
 
+@app.route('/jsonParser')
+def jsonParser(methods=['GET', 'POST']):
+    return "successfully downloaded"
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
