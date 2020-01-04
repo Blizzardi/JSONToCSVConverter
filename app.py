@@ -4,6 +4,7 @@ import os
 import requests
 import csv
 import json
+import sys
 
 app = Flask(__name__)
 
@@ -22,7 +23,7 @@ def jsonParser(methods=['GET', 'POST']):
     
 
 
-    download_url = "https://open-to-cors.s3.amazonaws.com/users.json"
+    download_url = "https%3A%2F%2Fopen-to-cors.s3.amazonaws.com%2Fusers.json"
     r = requests.get(download_url)
 
     with open("testerss.json","wb") as f:
@@ -67,4 +68,6 @@ def jsonParser(methods=['GET', 'POST']):
 if __name__ == "__main__":
     #port = int(os.environ.get("PORT", 5000))
     #app.run(host='0.0.0.0', port=port)
+    print('hello', file=sys.stderr)
     app.run()
+    
