@@ -14,5 +14,5 @@ Steps to run the application locally:
 3) You should now have a virtual environment
 4) Now install flask using pip install Flask
 5) Now run the app, python3 app.py
-
+6) Now go to  http://localhost:5000/ to see our app in action
 
