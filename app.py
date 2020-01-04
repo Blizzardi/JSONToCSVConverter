@@ -12,7 +12,8 @@ def index():
 
 @app.route('/return-file/')
 def return_file():
-    return send_file('/Users/shahzinsajid/SmartServProjects/jsontocsvconverted.csv',attachment_filename='jsontocsvconverted.csv')
+    #return send_file('/Users/shahzinsajid/SmartServProjects/jsontocsvconverted.csv',attachment_filename='jsontocsvconverted.csv')
+    return "hey"
 
 @app.route('/jsonParser')
 def jsonParser(methods=['GET', 'POST']):
