@@ -23,9 +23,9 @@ def jsonParser(methods=['GET', 'POST']):
     
 
 
-    download_url = "https%3A%2F%2Fopen-to-cors.s3.amazonaws.com%2Fusers.json"
+    download_url = "https://open-to-cors.s3.amazonaws.com/users.json"
     r = requests.get(download_url)
-
+return "successfully downloaded"
     with open("testerss.json","wb") as f:
         f.write(r.content)
 
