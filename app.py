@@ -58,7 +58,7 @@ def jsonParser():
     #return "downloading.."
     #return send_file('/Users/shahzinsajid/SmartServProjects/testlol.csv',attachment_filename='testlol.csv')
     #return render_template('downloads.html')
-    return print(f.readLines())  
+    return "h"
     #return render_template('downloads.html')
 
 @app.route('/return-file/')
