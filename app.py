@@ -18,10 +18,6 @@ def return_file():
     #return send_file('/Users/shahzinsajid/SmartServProjects/jsontocsvconverted.csv',attachment_filename='jsontocsvconverted.csv')
     return "hey"
 
-@app.route('/jsonParser2')
-def jsonParser(methods=['GET', 'POST']):
-    return "success"
-
 
 
 if __name__ == "__main__":
