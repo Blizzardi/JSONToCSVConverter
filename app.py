@@ -1,7 +1,8 @@
 from flask import Flask
 import os
 import csv
-import requests
+import urllib.request
+
 
 
 app = Flask(__name__)
@@ -11,9 +12,10 @@ def index():
     return "Hello, World"
 
 @app.route('/jsonParser')
-def jsonParser(methods=['GET', 'POST']):
-    download_url = "https://open-to-cors.s3.amazonaws.com/users.json"
-
+def jsonParser():
+    #download_url = "https://open-to-cors.s3.amazonaws.com/users.json"
+    response = urllib.request.urlopen("https://open-to-cors.s3.amazonaws.com/users.json")
+    html = response.read()
     #r = requests.get(download_url)
     return "successfully downloaded"
 
