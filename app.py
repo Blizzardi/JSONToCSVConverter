@@ -34,8 +34,8 @@ def jsonParser():
     #return output
     for x in x:
         try:
-            return x["id"]
-            output.join(",".join([x["id"],
+            #return x["id"]
+            return  ",".join([x["id"],
                         x["phones"],
                         x["email"],
                         x["firstname"],
@@ -44,11 +44,11 @@ def jsonParser():
                         x["username"],
                         x["isActive"],
                         x["_created_at"],
-                        x["_updated_at"]]) )
+                        x["_updated_at"]]) 
           
         except:
-                return x["_id"]
-                output.join((",".join([x["_id"],
+                #return x["_id"]
+                return  ",".join([x["_id"],
                         x["phones"],
                         x["email"],
                         x["firstname"],
@@ -57,7 +57,7 @@ def jsonParser():
                         x["username"],
                         x["isActive"],
                         x["_created_at"],
-                        x["_updated_at"]])))
+                        x["_updated_at"]])
 
     #return send_from_directory(directory='/smartservprojects',filename='testlol.csv', as_attachment=True)
     #return "downloading.."
