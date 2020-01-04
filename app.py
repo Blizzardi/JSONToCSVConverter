@@ -25,7 +25,7 @@ def jsonParser():
 
    # with open('testerss.json') as f:
     x = json.load(r.content)
-
+    return x
     #f = csv.writer(open("jsontocsvconverted.csv", "w", newline=''))
 
     
