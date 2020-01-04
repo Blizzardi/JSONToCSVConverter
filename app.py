@@ -24,8 +24,8 @@ def jsonParser():
       #  f.write(r.content)
 
    # with open('testerss.json') as f:
-    x = json.load(r.content)
-    return x
+    x = json.loads(r.content)
+   # return x
     #f = csv.writer(open("jsontocsvconverted.csv", "w", newline=''))
 
     
@@ -34,6 +34,7 @@ def jsonParser():
     #return output
     for x in x:
         try:
+            #return x["id"]
             output.join(",".join([x["id"],
                         x["phones"],
                         x["email"],
