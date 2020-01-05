@@ -30,12 +30,22 @@ def upload():
     for file in request.files.getlist("file"):
         print(file)
         filename = file.filename
-        destination = "/".join([target,filename])
+        destination = "/".join([target,"ourfile.csv"])
         print(destination)
         file.save(destination)
 
     return render_template('complete.html')
 
+@app.route('/readng')
+def readng():
+    target = os.path.join(APP_ROOT,"textcsv/ourfile.csv")
+    log = open(target,"r")
+    output=''
+    for line in log:
+        output=output+line
+    return output
+    
+    
 
 @app.route('/jsonParser')
 def jsonParser():
