@@ -1,5 +1,5 @@
 # JSONToCSVConverter
-Converting from JSON to .CSV format
+Converting from JSON to .CSV format (Assigment from SmartServ)
 
 
 Tools Required:
