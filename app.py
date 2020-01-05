@@ -1,4 +1,4 @@
-from flask import Flask,render_template,send_file
+from flask import Flask,render_template,send_file,request
 import requests
 import os
 import csv
@@ -9,9 +9,33 @@ import json
 
 app = Flask(__name__,template_folder='templates')
 
+APP_ROOT = os.path.dirname(os.path.abspath(__file__)) #this gets us to SRC
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/import/')
+def importe():
+    return render_template('import.html')
+
+@app.route('/upload',methods=['POST'])
+def upload():
+    target = os.path.join(APP_ROOT,'textcsv/')
+    print(target)
+
+    if not os.path.isdir(target):
+        os.mkdir(target)
+
+    for file in request.files.getlist("file"):
+        print(file)
+        filename = file.filename
+        destination = "/".join([target,filename])
+        print(destination)
+        file.save(destination)
+
+    return render_template('complete.html')
+
 
 @app.route('/jsonParser')
 def jsonParser():
@@ -27,7 +51,7 @@ def jsonParser():
     x = json.loads(r.content)
    # return x
     #f = csv.writer(open("jsontocsvconverted.csv", "w", newline=''))
-
+    
     
     outputArray =  ["id", "phones", "email", "firstname", "lastname","role","username","isActive","_created_at","_updated_at"]
     output = ','.join(outputArray)
