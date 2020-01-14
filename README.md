@@ -11,7 +11,7 @@ Steps to run the application locally:
 2) Run a virtual environment to use for you an by application by using the following commands
    ```pip3 install virtualenv
       virtualenv env
-      source env/bin/activate```
+      source env/bin/activate
 3) You should now have a virtual environment
 4) Now install flask using pip install Flask
 5) Now run the app, ```python3 app.py```
