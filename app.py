@@ -71,10 +71,6 @@ def readng():
     return render_template('table.html',x=myVar.values.T.tolist(),y=y,length=length_usecols,lengthofx=lengthofx)
 
 
-    
-    
-    
-
 @app.route('/jsonParser')
 def jsonParser():
     download_url = "https://open-to-cors.s3.amazonaws.com/users.json"
@@ -102,7 +98,6 @@ def jsonParser():
                         str(x["_created_at"]) or "",
                         str(x["_updated_at"]) or ""]) 
             
-
         output =  output + "\n" + output2 
         i = i + 1
             
@@ -110,11 +105,6 @@ def jsonParser():
     string_out.write(output)
     returnfile = string_out.getvalue()
     return Response(returnfile, mimetype="text/plain", headers={"Content-disposition": "attachment; filename=output.txt"})
-
-@app.route('/return-file/')
-def return_file():
-    return send_file('/Users/shahzinsajid/SmartServProjects/jsontocsvconverted.csv',attachment_filename='jsontocsvconverted.csv')
-    #return "hey"
 
 if __name__ == "__main__":
     app.run(debug=True,threaded=True)
