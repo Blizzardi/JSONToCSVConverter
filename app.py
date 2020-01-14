@@ -1,4 +1,5 @@
-from flask import Flask,render_template,send_file,request
+from flask import Flask,render_template,send_file,request,Response
+from io import StringIO
 import requests
 import os
 import csv
@@ -137,7 +138,7 @@ def jsonParser():
             
         #output = output + "\n' + output2 
 
-        output =  output + "<br>" + output2 #'\n'.join([output, output2])
+        output =  output + "\n" + output2 #'\n'.join([output, output2])
         i = i + 1
             
           
@@ -159,7 +160,11 @@ def jsonParser():
     #return "downloading.."
     #return send_file('/Users/shahzinsajid/SmartServProjects/testlol.csv',attachment_filename='testlol.csv')
     #return render_template('downloads.html')
-    return output
+    string_out = StringIO()
+    string_out.write(output)
+    returnfile = string_out.getvalue()
+    return Response(returnfile, mimetype="text/plain", headers={"Content-disposition": "attachment; filename=output.txt"})
+    
     #return render_template('downloads.html')
     #return "hey"
 
