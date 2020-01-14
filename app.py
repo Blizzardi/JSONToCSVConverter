@@ -121,10 +121,6 @@ def jsonParser():
     returnfile = string_out.getvalue()
     return Response(returnfile, mimetype="text/plain", headers={"Content-disposition": "attachment; filename=output.txt"})
     
-@app.route('/return-file/')
-def return_file():
-    return send_file('/Users/shahzinsajid/SmartServProjects/jsontocsvconverted.csv',attachment_filename='jsontocsvconverted.csv')
- 
 
 if __name__ == "__main__":
     app.run(debug=True,threaded=True)
