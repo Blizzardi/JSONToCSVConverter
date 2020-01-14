@@ -4,9 +4,8 @@ import requests
 import os
 import csv
 import json
-#from petl import fromcsv, look, cut, tocsv
 import pandas as pd
-#import urllib.request
+
 
 
 new = ""
@@ -61,30 +60,21 @@ def readng():
     output=''
     for line in log:
         output=output+line #  
-        output=output+"<br>" # 
-    #b=np.loadtxt(target,dtype=str,delimiter=',',skiprows=1,usecols=(1,))
-    #df = pd.read_csv(target, usecols=['col1', 'col3', 'col7'])
+        output=output+"<br>"
 
     usecolz=['firstname', 'lastname','phones','email','role','isActive']
     length_usecols = len(usecolz)
     myVar = pd.read_csv(target, sep = ",",usecols=usecolz)[usecolz]
-    #
-   # new = "<br>".join(myVar.tolist())
+   
 
-   # x.append('\n'.join(myVar.tolist()))
-   # print(x)
-
-    y = myVar.columns #["id", "phones", "email", "firstname", "lastname","role","username","isActive","_created_at","_updated_at"]
-    #y = [ "firstname", "lastname","phones"]
-
-   # return x
-    #x = ['Foo', 'Bar']
+    y = myVar.columns 
+ 
     z = myVar.values.T.tolist()
     print(z)
     
     length = len(z)
     
-    #lengthofx=len(myVar.values.T.tolist())
+   
     lengthofx=len(myVar.values.T.tolist()[0])
     print(lengthofx)
     return render_template('table.html',x=myVar.values.T.tolist(),y=y,length=length_usecols,lengthofx=lengthofx)
@@ -97,26 +87,14 @@ def readng():
 @app.route('/jsonParser')
 def jsonParser():
     download_url = "https://open-to-cors.s3.amazonaws.com/users.json"
-    #response = urllib.request.urlopen("https://open-to-cors.s3.amazonaws.com/users.json")
-    #html = response.read()
-
     r = requests.get(download_url)
-    #with open("testerss.json","wb") as f:
-      #  f.write(r.content)
-
-   # with open('testerss.json') as f:
     x = json.loads(r.content)
-   # return x
-    #f = csv.writer(open("jsontocsvconverted.csv", "w", newline=''))
-    
-    
     outputArray =  ["id", "phones", "email", "firstname", "lastname","role","username","isActive","_created_at","_updated_at"]
     output = ','.join(outputArray)
     i = 0
-    #return output
+    
     for x in x:
-        #try:
-            #return x["id"]
+     
         try:
             idValue = x["id"] or x["_id"]
            # if type(idValue) == <type 'int'>:
@@ -135,43 +113,18 @@ def jsonParser():
                         
                         str(x["_created_at"]) or "",
                         str(x["_updated_at"]) or ""]) 
-            
-        #output = output + "\n' + output2 
-
-        output =  output + "\n" + output2 #'\n'.join([output, output2])
+        output =  output + "\n" + output2
         i = i + 1
-            
-          
-       # except:
-                #return x["_id"]
-                #return  ",".join([x["_id"],
-                        #x["phones"] or "",
-                        #x["email"] or "",
-                        #x["firstname"] or "",
-                        #x["lastname"] or "",
-                        #x["role"] or "",
-                        #x["username"] or "",
-                        #x["isActive"] or "",
-                        #x["_created_at"] or ""
-                       # x["_updated_at"] or "" ]
-                        #])
-
-    #return send_from_directory(directory='/smartservprojects',filename='testlol.csv', as_attachment=True)
-    #return "downloading.."
-    #return send_file('/Users/shahzinsajid/SmartServProjects/testlol.csv',attachment_filename='testlol.csv')
-    #return render_template('downloads.html')
+        
     string_out = StringIO()
     string_out.write(output)
     returnfile = string_out.getvalue()
     return Response(returnfile, mimetype="text/plain", headers={"Content-disposition": "attachment; filename=output.txt"})
     
-    #return render_template('downloads.html')
-    #return "hey"
-
 @app.route('/return-file/')
 def return_file():
     return send_file('/Users/shahzinsajid/SmartServProjects/jsontocsvconverted.csv',attachment_filename='jsontocsvconverted.csv')
-    #return "hey"
+ 
 
 if __name__ == "__main__":
     app.run(debug=True,threaded=True)
