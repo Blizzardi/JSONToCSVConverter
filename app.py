@@ -121,7 +121,7 @@ def jsonParser():
             idValue = x["id"] or x["_id"]
            # if type(idValue) == <type 'int'>:
             idValue = str(idValue)
-        except:
+        except:     
             idValue = x["_id"] or "nil"
 
         output2 =   ",".join([ idValue ,
