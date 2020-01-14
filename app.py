@@ -3,21 +3,38 @@ import requests
 import os
 import csv
 import json
+#from petl import fromcsv, look, cut, tocsv
+import pandas as pd
 #import urllib.request
 
 
-
+new = ""
+x=[]
 app = Flask(__name__,template_folder='templates')
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__)) #this gets us to SRC
+
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
+@app.route('/yoyo')
+def yoyo():
+    return request.form['right_list']
+
+
 @app.route('/import/')
 def importe():
     return render_template('import.html')
+
+@app.route('/checkbox/')
+def checkbox():
+    return render_template('checkbox.html')
+
+@app.route('/table/')
+def tablee():
+    return render_template('table.html')
 
 @app.route('/upload',methods=['POST'])
 def upload():
@@ -42,8 +59,37 @@ def readng():
     log = open(target,"r")
     output=''
     for line in log:
-        output=output+line
-    return output
+        output=output+line #  
+        output=output+"<br>" # 
+    #b=np.loadtxt(target,dtype=str,delimiter=',',skiprows=1,usecols=(1,))
+    #df = pd.read_csv(target, usecols=['col1', 'col3', 'col7'])
+
+    usecolz=['firstname', 'lastname','phones','email','role','isActive']
+    length_usecols = len(usecolz)
+    myVar = pd.read_csv(target, sep = ",",usecols=usecolz)[usecolz]
+    #
+   # new = "<br>".join(myVar.tolist())
+
+   # x.append('\n'.join(myVar.tolist()))
+   # print(x)
+
+    y = myVar.columns #["id", "phones", "email", "firstname", "lastname","role","username","isActive","_created_at","_updated_at"]
+    #y = [ "firstname", "lastname","phones"]
+
+   # return x
+    #x = ['Foo', 'Bar']
+    z = myVar.values.T.tolist()
+    print(z)
+    
+    length = len(z)
+    
+    #lengthofx=len(myVar.values.T.tolist())
+    lengthofx=len(myVar.values.T.tolist()[0])
+    print(lengthofx)
+    return render_template('table.html',x=myVar.values.T.tolist(),y=y,length=length_usecols,lengthofx=lengthofx)
+
+
+    
     
     
 

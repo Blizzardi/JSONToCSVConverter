@@ -1,0 +1,51 @@
+<html>
+<head>
+    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <script type="text/javascript">
+        $().ready(function(){
+            $('#move_right').click(function(){
+                return !$('#left_list option:selected').remove().appendTo('#right_list');
+            });
+            $('#move_left').click(function(){
+                return !$('#right_list option:selected').remove().appendTo('#left_list');
+            });
+        });
+    </script>
+</head>
+<body>
+<table style="text-align:center;">
+    <tbody>
+        <tr>
+            <td>Left List:</td>
+            <td></td>
+            <td>Right List:</td>
+        </tr>
+        <tr>
+            <td>
+                <select id="left_list" name="left_list[]" multiple="" size="12">
+                    <option value="7">Blackberry</option>
+                    <option value="8">Blackcurrant</option>
+                    <option value="19">Damson</option>
+                    <option value="22">Durian</option>
+                </select>
+            </td>
+            <td>
+                <input id="move_right" name="move_right" value="=>" type="button"><br>
+                <input id="move_left" name="move_left" value="<=" type="button">
+            </td>
+            <td>
+                <select id="right_list" name="right_list[]" multiple="" size="12">
+                    <option value="17">Cranberry</option>
+                    <option value="14">Cherimoya</option>
+                    <option value="1">Apple</option>
+                    <option value="2">Apricot</option>
+                </select>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<form action="{{ url_for('yoyo') }}" method="post">
+    <input type="submit" form="form1" name="submit" value="right_list" onclick="yoyo">
+</form>
+</body>
+</html>
